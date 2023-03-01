@@ -4,7 +4,9 @@ import com.aterehov.model.User;
 import com.aterehov.repository.UserRepository;
 import com.aterehov.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(int id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
     @Override
