@@ -2,6 +2,26 @@ h2-datasource:
   url: jdbc:h2:mem:jmpa_db;DB_CLOSE_DELAY=-1
   username: sa
   password:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  application:
+    name: ${rootProject.name}
+    description: ${description}
+    version: ${version}
+    java-version: ${sourceCompatibility}
+
 spring:
   jpa:
     properties:
