@@ -1,7 +1,6 @@
-h2-datasource:
-  url: jdbc:h2:mem:jmpa_db;DB_CLOSE_DELAY=-1
-  username: sa
-  password:
+spring:
+  profiles:
+    active: qa
 
 management:
   endpoints:
@@ -21,22 +20,3 @@ info:
     description: ${description}
     version: ${version}
     java-version: ${sourceCompatibility}
-
-spring:
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-  h2:
-    console:
-      enabled: true
-      path: /h2
-  security:
-    user:
-      name: user
-      password: pwd
-      roles:
-        - USER

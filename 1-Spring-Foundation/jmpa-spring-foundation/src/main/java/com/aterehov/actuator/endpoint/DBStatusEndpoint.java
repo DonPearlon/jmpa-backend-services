@@ -17,7 +17,7 @@ public class DBStatusEndpoint {
 
     @ReadOperation
     public Map<String, String> getDBStatusEndpoint() {
-        String status = "DOWN";
+        var status = "DOWN";
         if (dbHealthCheckService.isHealthy()) {
             status = "UP";
         }

@@ -1,4 +1,4 @@
-package com.aterehov.actuator.config;
+package com.aterehov.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
