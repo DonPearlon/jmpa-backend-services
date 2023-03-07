@@ -9,12 +9,31 @@
       "type": "int"
     },
     {
-      "name": "item",
+      "name": "customer",
       "type": "string"
     },
     {
-      "name": "price",
-      "type": "float"
+      "name": "orderItems",
+      "type": {
+        "type": "array",
+        "items":{
+          "name": "OrderItem",
+          "type": "record",
+          "fields":[
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            { "name": "price",
+              "type": "float"
+            }
+          ]
+        }
+      }
     }
   ]
 }

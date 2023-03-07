@@ -3,13 +3,10 @@ package com.aterehov.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
-public class OrderDto {
+public class OrderItemDto {
     private int id;
-    private String customer;
-
-    List<OrderItemDto> orderItems;
+    private String name;
+    private double price;
 }
