@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: qa
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  application:
+    name: ${rootProject.name}
+    description: ${description}
+    version: ${version}
+    java-version: ${sourceCompatibility}
