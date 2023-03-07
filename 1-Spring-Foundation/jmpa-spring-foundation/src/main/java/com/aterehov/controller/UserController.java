@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -16,13 +17,13 @@ public class UserController {
     private final UserService service;
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok(service.getAll());
+    public Mono<ResponseEntity<List<User>>> getUsers() {
+        return Mono.just(ResponseEntity.ok(service.getAll()));
     }
 
     @PostMapping
-    public ResponseEntity<?> saveUser(@RequestBody User user) {
+    public Mono<ResponseEntity<?>> saveUser(@RequestBody User user) {
         service.save(user);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return Mono.just(new ResponseEntity<>(HttpStatus.CREATED));
     }
 }
