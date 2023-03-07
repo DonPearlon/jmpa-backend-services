@@ -1,0 +1,39 @@
+spring:
+  cloud:
+    stream:
+#      schema-registry-client:
+#        endpoint: http://localhost:8081
+      default:
+        producer:
+          useNativeEncoding: true
+        consumer:
+          useNativeEncoding: true
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+          auto-add-partitions: true
+          producer-properties:
+            key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            schema.registry.url: http://localhost:8081
+          consumer-properties:
+            key.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            schema.registry.url: http://localhost:8081
+            specific.avro.reader: true
+#          consumer-properties:
+#            max.poll.records: 200
+#            fetch.max.wait.ms: 100
+      bindings:
+        orderConsumer-in-0:
+          destination: com.aterehov.orders
+          group: order-consumer-group
+          content-type: application/*+avro
+          consumer:
+            maxAttempts: 1
+#            batch-mode: true
+            concurrency: 5
+        orderProducer-out-0:
+          destination: com.aterehov.orders
+          content-type: application/*+avro
