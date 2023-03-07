@@ -5,14 +5,11 @@ import com.aterehov.schema.OrderItem;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface OrderItemMapper {
-    OrderItemMapper INSTANCE = Mappers.getMapper(OrderItemMapper.class);
-
     @Named("mapToOrderItem")
     OrderItem toEntity(OrderItemDto orderItemDto);
 

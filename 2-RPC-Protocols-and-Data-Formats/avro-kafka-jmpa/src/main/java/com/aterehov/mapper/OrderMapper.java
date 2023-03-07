@@ -3,21 +3,15 @@ package com.aterehov.mapper;
 import com.aterehov.dto.OrderDto;
 import com.aterehov.schema.Order;
 import org.mapstruct.*;
-import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface OrderMapper {
 
-    OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
-
-    @Mappings({
-            @Mapping(target = "orderItems", ignore = true)
-    })
     Order toEntity(OrderDto orderDto);
 
     @AfterMapping
-    default void setOrderItems(@MappingTarget Order target, OrderDto source) {
-        target.setOrderItems(OrderItemMapper.INSTANCE.toEntity(source.getOrderItems()));
+    default void setOrderItems(@MappingTarget Order target, OrderDto source, @Context OrderItemMapper orderItemMapper) {
+        target.setOrderItems(orderItemMapper.toEntity(source.getOrderItems()));
     }
 }
 
