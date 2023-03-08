@@ -6,6 +6,9 @@ import com.aterehov.schema.Order;
 import com.aterehov.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.stream.function.StreamBridge;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +20,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void saveOrder(OrderDto orderDto) {
         Order order = orderMapper.toEntity(orderDto);
-        streamBridge.send("orderProducer-out-0", order);
+        Message<Order> message = MessageBuilder.withPayload(order)
+                .setHeader(KafkaHeaders.KEY, order.getCustomer())
+                .build();
+        streamBridge.send("orderProducer-out-0", message);
     }
 }
