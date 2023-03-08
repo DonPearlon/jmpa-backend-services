@@ -9,6 +9,9 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderDto {
     private int id;
+
+    private int customerId;
+
     private String customer;
 
     List<OrderItemDto> orderItems;

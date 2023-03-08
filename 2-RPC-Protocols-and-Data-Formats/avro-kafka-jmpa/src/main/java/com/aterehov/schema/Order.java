@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Order extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -4203920889064780302L;
+  private static final long serialVersionUID = 3772411997593317198L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.aterehov.schema\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"customer\",\"type\":\"string\"},{\"name\":\"orderItems\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderItem\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}}],\"version\":\"1\"}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.aterehov.schema\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"customerId\",\"type\":\"int\"},{\"name\":\"customer\",\"type\":\"string\"},{\"name\":\"orderItems\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderItem\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}}],\"version\":\"1\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -74,6 +74,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   private int id;
+  private int customerId;
   private java.lang.CharSequence customer;
   private java.util.List<com.aterehov.schema.OrderItem> orderItems;
 
@@ -87,11 +88,13 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   /**
    * All-args constructor.
    * @param id The new value for id
+   * @param customerId The new value for customerId
    * @param customer The new value for customer
    * @param orderItems The new value for orderItems
    */
-  public Order(java.lang.Integer id, java.lang.CharSequence customer, java.util.List<com.aterehov.schema.OrderItem> orderItems) {
+  public Order(java.lang.Integer id, java.lang.Integer customerId, java.lang.CharSequence customer, java.util.List<com.aterehov.schema.OrderItem> orderItems) {
     this.id = id;
+    this.customerId = customerId;
     this.customer = customer;
     this.orderItems = orderItems;
   }
@@ -107,8 +110,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return id;
-    case 1: return customer;
-    case 2: return orderItems;
+    case 1: return customerId;
+    case 2: return customer;
+    case 3: return orderItems;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -119,8 +123,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = (java.lang.Integer)value$; break;
-    case 1: customer = (java.lang.CharSequence)value$; break;
-    case 2: orderItems = (java.util.List<com.aterehov.schema.OrderItem>)value$; break;
+    case 1: customerId = (java.lang.Integer)value$; break;
+    case 2: customer = (java.lang.CharSequence)value$; break;
+    case 3: orderItems = (java.util.List<com.aterehov.schema.OrderItem>)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -140,6 +145,23 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
    */
   public void setId(int value) {
     this.id = value;
+  }
+
+  /**
+   * Gets the value of the 'customerId' field.
+   * @return The value of the 'customerId' field.
+   */
+  public int getCustomerId() {
+    return customerId;
+  }
+
+
+  /**
+   * Sets the value of the 'customerId' field.
+   * @param value the value to set.
+   */
+  public void setCustomerId(int value) {
+    this.customerId = value;
   }
 
   /**
@@ -218,6 +240,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     implements org.apache.avro.data.RecordBuilder<Order> {
 
     private int id;
+    private int customerId;
     private java.lang.CharSequence customer;
     private java.util.List<com.aterehov.schema.OrderItem> orderItems;
 
@@ -236,13 +259,17 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.customer)) {
-        this.customer = data().deepCopy(fields()[1].schema(), other.customer);
+      if (isValidValue(fields()[1], other.customerId)) {
+        this.customerId = data().deepCopy(fields()[1].schema(), other.customerId);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.orderItems)) {
-        this.orderItems = data().deepCopy(fields()[2].schema(), other.orderItems);
+      if (isValidValue(fields()[2], other.customer)) {
+        this.customer = data().deepCopy(fields()[2].schema(), other.customer);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
+      }
+      if (isValidValue(fields()[3], other.orderItems)) {
+        this.orderItems = data().deepCopy(fields()[3].schema(), other.orderItems);
+        fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
     }
 
@@ -256,13 +283,17 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.customer)) {
-        this.customer = data().deepCopy(fields()[1].schema(), other.customer);
+      if (isValidValue(fields()[1], other.customerId)) {
+        this.customerId = data().deepCopy(fields()[1].schema(), other.customerId);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.orderItems)) {
-        this.orderItems = data().deepCopy(fields()[2].schema(), other.orderItems);
+      if (isValidValue(fields()[2], other.customer)) {
+        this.customer = data().deepCopy(fields()[2].schema(), other.customer);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.orderItems)) {
+        this.orderItems = data().deepCopy(fields()[3].schema(), other.orderItems);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -306,6 +337,45 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     }
 
     /**
+      * Gets the value of the 'customerId' field.
+      * @return The value.
+      */
+    public int getCustomerId() {
+      return customerId;
+    }
+
+
+    /**
+      * Sets the value of the 'customerId' field.
+      * @param value The value of 'customerId'.
+      * @return This builder.
+      */
+    public com.aterehov.schema.Order.Builder setCustomerId(int value) {
+      validate(fields()[1], value);
+      this.customerId = value;
+      fieldSetFlags()[1] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'customerId' field has been set.
+      * @return True if the 'customerId' field has been set, false otherwise.
+      */
+    public boolean hasCustomerId() {
+      return fieldSetFlags()[1];
+    }
+
+
+    /**
+      * Clears the value of the 'customerId' field.
+      * @return This builder.
+      */
+    public com.aterehov.schema.Order.Builder clearCustomerId() {
+      fieldSetFlags()[1] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'customer' field.
       * @return The value.
       */
@@ -320,9 +390,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.aterehov.schema.Order.Builder setCustomer(java.lang.CharSequence value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.customer = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -331,7 +401,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'customer' field has been set, false otherwise.
       */
     public boolean hasCustomer() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -341,7 +411,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public com.aterehov.schema.Order.Builder clearCustomer() {
       customer = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -360,9 +430,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.aterehov.schema.Order.Builder setOrderItems(java.util.List<com.aterehov.schema.OrderItem> value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.orderItems = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -371,7 +441,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'orderItems' field has been set, false otherwise.
       */
     public boolean hasOrderItems() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
 
 
@@ -381,7 +451,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public com.aterehov.schema.Order.Builder clearOrderItems() {
       orderItems = null;
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -391,8 +461,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       try {
         Order record = new Order();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
-        record.customer = fieldSetFlags()[1] ? this.customer : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.orderItems = fieldSetFlags()[2] ? this.orderItems : (java.util.List<com.aterehov.schema.OrderItem>) defaultValue(fields()[2]);
+        record.customerId = fieldSetFlags()[1] ? this.customerId : (java.lang.Integer) defaultValue(fields()[1]);
+        record.customer = fieldSetFlags()[2] ? this.customer : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.orderItems = fieldSetFlags()[3] ? this.orderItems : (java.util.List<com.aterehov.schema.OrderItem>) defaultValue(fields()[3]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -427,6 +498,8 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   {
     out.writeInt(this.id);
 
+    out.writeInt(this.customerId);
+
     out.writeString(this.customer);
 
     long size0 = this.orderItems.size();
@@ -451,6 +524,8 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     if (fieldOrder == null) {
       this.id = in.readInt();
 
+      this.customerId = in.readInt();
+
       this.customer = in.readString(this.customer instanceof Utf8 ? (Utf8)this.customer : null);
 
       long size0 = in.readArrayStart();
@@ -472,17 +547,21 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       }
 
     } else {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 4; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readInt();
           break;
 
         case 1:
-          this.customer = in.readString(this.customer instanceof Utf8 ? (Utf8)this.customer : null);
+          this.customerId = in.readInt();
           break;
 
         case 2:
+          this.customer = in.readString(this.customer instanceof Utf8 ? (Utf8)this.customer : null);
+          break;
+
+        case 3:
           long size0 = in.readArrayStart();
           java.util.List<com.aterehov.schema.OrderItem> a0 = this.orderItems;
           if (a0 == null) {

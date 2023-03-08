@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
     public void saveOrder(OrderDto orderDto) {
         Order order = orderMapper.toEntity(orderDto);
         Message<Order> message = MessageBuilder.withPayload(order)
-                .setHeader(KafkaHeaders.KEY, order.getCustomer())
+                .setHeader(KafkaHeaders.KEY, order.getCustomerId())
                 .build();
         streamBridge.send("orderProducer-out-0", message);
     }
