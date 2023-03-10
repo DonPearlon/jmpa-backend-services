@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.aterehov.stubs.message;
+
+option java_package="com.aterehov.stubs.message";
+option java_multiple_files = true;
+
+service MessageService{
+  rpc process(MessageRequest) returns (MessageResponse);
+}
+
+message MessageRequest{
+  string message = 1;
+}
+
+message MessageResponse{
+  string message = 1;
+}
