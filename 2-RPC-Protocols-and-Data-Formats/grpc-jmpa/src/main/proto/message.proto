@@ -2,11 +2,17 @@ syntax = "proto3";
 
 package com.aterehov.stubs.message;
 
-option java_package="com.aterehov.stubs.message";
+option java_package = "com.aterehov.stubs.message";
 option java_multiple_files = true;
 
 service MessageService{
   rpc process(MessageRequest) returns (MessageResponse);
+
+  rpc processServerSideStreaming(MessageRequest) returns (stream MessageResponse);
+
+  rpc processClientSideStreaming(stream MessageRequest) returns (MessageResponse);
+
+  rpc processBidirectionalStreaming(stream MessageRequest) returns (stream MessageResponse);
 }
 
 message MessageRequest{
