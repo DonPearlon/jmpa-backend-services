@@ -6,10 +6,10 @@ import org.springframework.cloud.stream.schema.client.EnableSchemaRegistryClient
 
 @SpringBootApplication
 @EnableSchemaRegistryClient
-public class AvroKafkaDemoApplication {
+public class AvroKafkaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AvroKafkaDemoApplication.class, args);
+		SpringApplication.run(AvroKafkaApplication.class, args);
 	}
 
 }

@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.aterehov</groupId>
-	<artifactId>avro-kafka-demo</artifactId>
+	<artifactId>avro-kafka-jmpa</artifactId>
 	<version>0.1</version>
 	<name>avro-kafka-jmpa</name>
 	<description>JMPA module for Kafka and Avro</description>

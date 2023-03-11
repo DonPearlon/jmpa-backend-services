@@ -12,7 +12,7 @@ spring:
         binder:
           brokers: localhost:9092
           auto-create-topics: true
-          auto-add-partitions: true
+#          auto-add-partitions: true
           producer-properties:
             key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
             value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
