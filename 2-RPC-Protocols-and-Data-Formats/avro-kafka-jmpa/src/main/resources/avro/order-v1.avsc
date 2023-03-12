@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "name": "Order",
+  "namespace": "com.aterehov.schema",
+  "version": "1",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    },
+    {
+      "name": "customer",
+      "type": "string"
+    },
+    {
+      "name": "orderItems",
+      "type": {
+        "type": "array",
+        "items":{
+          "name": "OrderItem",
+          "type": "record",
+          "fields":[
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            { "name": "price",
+              "type": "float"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
